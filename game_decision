@@ -1,0 +1,14 @@
+digraph {
+	node [fontname=Handlee]
+	edge [fontname=Handlee]
+	draw [label="Draw a picture"]
+	win [label="You win!"]
+	guess [label="Did they
+guess it?"]
+	point [label="Point repeatedly
+to the same picture."]
+	draw -> guess
+	guess -> win [label=Yes]
+	point -> guess
+	guess -> point [label=No]
+}

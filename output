@@ -1,0 +1,12 @@
+// islor
+digraph {
+	db1 [label="isl hand gestures" color=aquamarine style=filled]
+	db2 [label="isl facial features" color=aquamarine style=filled]
+	db3 [label="isl other nmfs" color=aquamarine style=filled]
+	b [label=database shape=cylinder style=filled]
+	c [label=Processing shape=box]
+	db1 -> b
+	db2 -> b
+	db3 -> b
+	b -> c
+}

@@ -1,0 +1,16 @@
+'''
+digraph G {
+  node [fontname = "Handlee"];
+  edge [fontname = "Handlee"];
+
+  draw [ label = "Draw a picture" ];
+  win [ label = "You win!" ];
+  guess [ label = "Did they\nguess it?" ];
+  point [ label = "Point repeatedly\nto the same picture." ];
+
+  draw -> guess;
+  guess -> win [ label = "Yes" ];
+  point -> guess;
+  guess -> point [ label = "No" ];
+}
+'''

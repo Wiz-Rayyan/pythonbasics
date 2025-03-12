@@ -1,0 +1,60 @@
+digraph G {
+	subgraph cluster_Services {
+		label="ISL Translation System (Frontend/UI)"
+		isl_app [label="{ISL App|Capture and Translate ISL}" shape=Mrecord]
+	}
+	subgraph cluster_Server1 {
+		label="Processing Server (AI/ML)"
+		subgraph cluster_Jobs {
+			label="AI/ML Processing"
+			job_gesture_analysis [label="{Gesture Analysis|Step 1) Run ISL Model}" shape=Mrecord]
+			job_translation [label="{Translation Process|Step 2) Generate Text}" shape=Mrecord]
+		}
+	}
+	subgraph cluster_Server2 {
+		label="Server2 (Database Layer)"
+		subgraph cluster_Support_Database {
+			label="User and Translation Data"
+			subgraph cluster_Procs {
+				label="Stored Procedures"
+				usp_CaptureGesture
+				usp_StoreTranslation
+			}
+			subgraph cluster_Tables {
+				label=Tables
+				GestureTable [label="Captured Gestures"]
+				TranslationTable [label="Stored Translations"]
+			}
+			subgraph cluster_Views {
+				label=Views
+				vw_UserHistory [label="User Translation History"]
+			}
+		}
+	}
+	subgraph cluster_Server3 {
+		label="Server3 (Notification Layer)"
+		subgraph cluster_AutoAlert_Support {
+			label="Notification System"
+			subgraph cluster_Procs {
+				label="Stored Procedures"
+				usp_SendNotifications
+				usp_UserAlerts
+			}
+		}
+	}
+	subgraph cluster_Reports {
+		label="Report Server"
+		user_activity_report [label="{User Activity Report|Translation Logs}" shape=Mrecord]
+		system_performance_report [label="{System Performance|Logs}" shape=Mrecord]
+	}
+	isl_app -> usp_CaptureGesture
+	usp_CaptureGesture -> GestureTable
+	usp_StoreTranslation -> TranslationTable
+	job_gesture_analysis -> job_translation
+	job_gesture_analysis -> usp_StoreTranslation
+	job_translation -> TranslationTable
+	usp_SendNotifications -> vw_UserHistory
+	usp_UserAlerts -> vw_UserHistory [style=dashed]
+	user_activity_report -> usp_StoreTranslation
+	system_performance_report -> usp_CaptureGesture
+}

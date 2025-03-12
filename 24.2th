@@ -1,0 +1,13 @@
+digraph {
+	Outer [label="Outer Node"]
+	{
+		rank=same
+		color=lightblue label="Inner Node" style=filled
+		B [label=B]
+		D [label=D]
+		E [label=E]
+	}
+	Outer -> B
+	Outer -> D
+	Outer -> E
+}

@@ -1,0 +1,29 @@
+digraph G {
+	subgraph cluster_UI {
+		label="User Interface / User Experience"
+		homepage [label="{Homepage|Welcome Screen, Language Selection}" shape=Mrecord]
+		isl_camera_input [label="{Live Camera|Capture ISL Gestures}" shape=Mrecord]
+		translated_text_output [label="{Translated Text|Display in English/Hindi}" shape=Mrecord]
+		history_page [label="{Translation History|View Previous Translations}" shape=Mrecord]
+		settings_page [label="{Settings|User Preferences, Languages, Feedback}" shape=Mrecord]
+	}
+	invisible [style=invisible]
+	subgraph cluster_AppFlow {
+		label="App Flow"
+		login_page [label="{Login|Sign In, Sign Up, Profile Management}" shape=Mrecord]
+		translation_start [label="{Start Translation|Begin ISL Gesture Capture}" shape=Mrecord]
+		real_time_translation [label="{Real-Time Translation|Live Text Output}" shape=Mrecord]
+		save_translations [label="{Save Translations|Store Translated Text for Future}" shape=Mrecord]
+		view_previous_translations [label="{History|Access Previous Translations}" shape=Mrecord]
+	}
+	homepage -> login_page [label="Sign In"]
+	login_page -> isl_camera_input [label="Access Camera"]
+	isl_camera_input -> translation_start [label="Start Translation"]
+	translation_start -> real_time_translation [label="Translate in Real-Time"]
+	real_time_translation -> translated_text_output [label="Show Translation"]
+	translated_text_output -> save_translations [label="Option to Save"]
+	save_translations -> history_page [label="View Saved Translations"]
+	homepage -> settings_page [label="Customize Settings"]
+	history_page -> invisible [style=invis]
+	invisible -> login_page [style=invis]
+}

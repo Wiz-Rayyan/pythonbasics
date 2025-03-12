@@ -1,0 +1,98 @@
+// islor
+digraph {
+	newrank=true
+	sig [label="ISL Translation System" color=plum fillcolor=lightsalmon style=filled]
+	sag [label="Matrix Multiplication" color=plum fillcolor=lightsalmon style=filled]
+	geo [label="Text Conversion API" color=plum fillcolor=lightsalmon style=filled]
+	aux [label=CNN color=plum fillcolor=lightsalmon style=filled]
+	mnhd [label="user-interface" color=skyblue shape=box style=filled]
+	m0 [label="Application/Website" color=skyblue shape=box style=filled]
+	m1 [label="Support Vector Machines" color=skyblue shape=box style=filled]
+	m2 [label="Decision Trees and Random Forests" color=skyblue shape=box style=filled]
+	m3 [label="Hidden Markov Models " color=skyblue shape=box style=filled]
+	m4 [label="Gesture to text mapping" color=skyblue shape=box style=filled]
+	mc0 [label="Scale-Invariant Feature Transform" color=skyblue shape=box style=filled]
+	mcl [label="Optical Flow" color=skyblue shape=box style=filled]
+	m51 [label=webcam color=skyblue shape=box style=filled]
+	m52 [label="takes video input"]
+	m53 [label="frames processing" color=skyblue shape=box style=filled]
+	m61 [label="Algorithms & Techniques" color=skyblue shape=box style=filled]
+	m62 [label="Stochastic Gradient Descent"]
+	m63 [label="Transfer Learning" color=skyblue shape=box style=filled]
+	m64 [label="K-Fold Cross Validation"]
+	m71 [label="Data Augumentation" color=skyblue shape=box style=filled]
+	m72 [label="Background Subtraction"]
+	m73 [label="Contour Detection" color=skyblue shape=box style=filled]
+	m8 [label="Text Display Interface" color=skyblue shape=box style=filled]
+	tls [label="Data transript" color=mediumseagreen shape=doubleoctagon style=filled]
+	tls2 [label="English/Hindi LiveTranslation" color=mediumseagreen shape=doubleoctagon style=filled]
+	subgraph cluster_mw {
+		mo -> mc0
+		color=skyblue fillcolor="#F2A48188" label="." shape=box style=filled
+	}
+	subgraph "cluster bs" {
+		m1 -> mcl
+		color=skyblue fillcolor="#F2A48188" label=ML shape=box style=filled
+	}
+	subgraph cluster_sim {
+		m51 -> m52
+		m52 -> m53
+		color=skyblue fillcolor="#F2A48188" label="" shape=box style=filled
+	}
+	subgraph "cluster dist" {
+		m61 -> m62
+		m62 -> m63
+		m63 -> m64
+		color=skyblue fillcolor="#F2A48188" label="" shape=box style=filled
+	}
+	subgraph cluster_crop {
+		m71 -> m72
+		m72 -> m73
+		color=skyblue fillcolor="#F2A48188" label="Accounting for slight variation" shape=box style=filled
+	}
+	sig -> mnhd
+	sig -> m0
+	sig -> m1
+	sig -> m2
+	sig -> m3
+	sig -> m4
+	sig -> m51
+	sig -> m61
+	sig -> m71
+	mnhd -> m51
+	m2 -> m71
+	m64 -> m71
+	sag -> m71
+	aux -> m71
+	aux -> m1
+	aux -> m2
+	geo -> m8
+	m53 -> m71
+	m3 -> tls [label="(model sequences of gestures 
+ and predict future states 
+ based on past observations) "]
+	sig -> m3
+	m73 -> "Support Vector Machines" [label="to identify the shape and position 
+ of the hand 
+ in the image."]
+	"Support Vector Machines" -> tls
+	m2 -> "Post-Processing action" [label=" for gesture classification tasks"]
+	mc0 -> tls
+	mcl -> tls
+	m2 -> tls
+	"NLP correction" -> tls
+	"Post-Processing action" -> tls
+	"Error Handling" -> tls
+	m63 -> tls
+	m73 -> tls
+	tls -> m8
+	m1 -> tls2
+	mcl -> tls2
+	m2 -> tls2
+	m3 -> tls2
+	m4 -> tls2
+	m53 -> tls2
+	m63 -> tls2
+	m73 -> tls2
+	m8 -> tls2
+}

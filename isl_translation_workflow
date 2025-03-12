@@ -1,0 +1,40 @@
+digraph G {
+	subgraph cluster_Frontend {
+		label="Frontend Services"
+		web_app [label="{User Interface|React.js}" shape=Mrecord]
+		camera_input [label="{Camera Input|Live Video Capture}" shape=Mrecord]
+		text_output [label="{Text Output|Translated Text}" shape=Mrecord]
+	}
+	subgraph cluster_Backend {
+		label="Backend Processing"
+		subgraph cluster_Preprocessing {
+			label=Preprocessing
+			feature_extraction [label="{Feature Extraction|OpenCV, Haar-like features}" shape=Mrecord]
+			nmf_detection [label="{NMF Detection|Facial Expressions, Head Movements}" shape=Mrecord]
+		}
+		subgraph cluster_ML_Models {
+			label="Machine Learning Models"
+			svm_model [label="{Support Vector Machine|Classification, SVM equations}" shape=Mrecord]
+			entropy_calc [label="{Entropy Calculation|Minimizing Uncertainty}" shape=Mrecord]
+		}
+		subgraph cluster_NLP {
+			label="Natural Language Processing"
+			language_processing [label="{NLP|TensorFlow, PyTorch}" shape=Mrecord]
+		}
+	}
+	subgraph cluster_Database {
+		label=Database
+		isl_dataset [label="{ISL Dataset|ISL gestures, NMFs}" shape=Mrecord]
+		text_database [label="{Text Database|English/Hindi Phrases}" shape=Mrecord]
+	}
+	camera_input -> feature_extraction [label="Capture Video"]
+	feature_extraction -> nmf_detection [label="Detect NMFs"]
+	nmf_detection -> svm_model [label="NMF to Features"]
+	svm_model -> entropy_calc [label="Classify Gestures"]
+	entropy_calc -> language_processing [label="Text Translation"]
+	language_processing -> text_output [label="Generate Text"]
+	svm_model -> isl_dataset [label="Training Model"]
+	text_output -> text_database [label="Store Translated Text"]
+	web_app -> camera_input [label="User Input"]
+	text_output -> web_app [label="Display Translated Text"]
+}

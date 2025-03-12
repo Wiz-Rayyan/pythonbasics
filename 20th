@@ -1,0 +1,25 @@
+digraph {
+	A [label=A]
+	B [label=B]
+	C [label=C]
+	D [label=D]
+	E [label=E]
+	F [label=F]
+	G [label=G]
+	h
+	A -> B
+	A -> C
+	B -> D
+	C -> D
+	D -> E
+	D -> F
+	E -> G
+	F -> G
+	{
+		rank=same
+		label=Cluster
+		B [label=h]
+		D [label=h]
+		E [label=h]
+	}
+}

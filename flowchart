@@ -1,0 +1,24 @@
+digraph {
+	A [label=A]
+	B [label=B]
+	C [label=C]
+	D [label=D]
+	E [label=E]
+	F [label=F]
+	G [label=G]
+	A -> B
+	A -> C
+	B -> D
+	C -> D
+	D -> E
+	D -> F
+	E -> G
+	F -> G
+	{
+		rank=same
+		color=lightgrey label=Cluster style=rounded
+		B
+		D
+		E
+	}
+}

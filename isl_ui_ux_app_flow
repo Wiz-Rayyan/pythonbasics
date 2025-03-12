@@ -1,0 +1,30 @@
+digraph G {
+	subgraph cluster_UI {
+		label="User Interface / User Experience"
+		homepage [label="{Homepage|Welcome Screen, Language Selection}" shape=Mrecord]
+		isl_camera_input [label="{Live Camera|Capture ISL Gestures}" shape=Mrecord]
+		translated_text_output [label="{Translated Text|Display in English/Hindi}" shape=Mrecord]
+		history_page [label="{Translation History|View Previous Translations}" shape=Mrecord]
+		settings_page [label="{Settings|User Preferences, Languages, Feedback}" shape=Mrecord]
+	}
+	subgraph cluster_AppFlow {
+		label="App Flow (Backend Logic)"
+		auth_service [label="{Authentication|Login, User Data Management}" shape=Mrecord]
+		data_capture [label="{Data Capture|Receive ISL Gestures}" shape=Mrecord]
+		translation_service [label="{Translation Engine|Process ISL to Text}" shape=Mrecord]
+		database [label="{Database|Store User Data, Translations}" shape=Mrecord]
+		history_management [label="{History Service|Fetch Saved Translations}" shape=Mrecord]
+		settings_handler [label="{Settings Handler|Manage Preferences and Settings}" shape=Mrecord]
+	}
+	homepage -> isl_camera_input [label="Go to Camera"]
+	isl_camera_input -> translated_text_output [label="Show Translation"]
+	translated_text_output -> history_page [label="View History"]
+	homepage -> settings_page [label=Settings]
+	auth_service -> data_capture [label="Capture Gesture"]
+	data_capture -> translation_service [label="Translate to Text"]
+	translation_service -> database [label="Store Translation"]
+	database -> history_management [label="Retrieve History"]
+	settings_handler -> auth_service [label="Update User Preferences"]
+	history_page -> history_management [label="Fetch from Backend"]
+	settings_page -> settings_handler [label="Save Settings"]
+}

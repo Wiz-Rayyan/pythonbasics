@@ -1,0 +1,8 @@
+digraph {
+	node [fontname=Handlee shape=ellipse style=filled]
+	Outer [label="Outer Node" fillcolor=lightgrey height=2 pos="0,0!" width=2]
+	Middle [label="Middle Node" fillcolor=lightblue height=1.5 pos="0,0!" width=1.5]
+	Inner [label="Inner Node" fillcolor=lightgreen height=1 pos="0,0!" width=1]
+	Outer -> Middle [dir=none]
+	Middle -> Inner [dir=none]
+}

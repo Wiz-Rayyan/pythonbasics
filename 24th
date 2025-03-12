@@ -1,0 +1,46 @@
+digraph {
+	node [color=lightblue fillcolor=lightyellow fontname=Handlee shape=box style=filled]
+	A [label=A]
+	B [label=B]
+	C [label=C]
+	D [label=D]
+	Table1 [label=Table1]
+	Table2 [label=Table2]
+	Table3 [label=Table3]
+	Table4 [label=Table4]
+	E [label=E]
+	F [label=F]
+	G [label=G]
+	H [label=H]
+	J [label=J]
+	J2 [label=J2]
+	A -> C
+	D -> Table1
+	D -> Table2
+	D -> Table3
+	D -> Table4
+	E -> Table3
+	E -> Table4
+	B -> H
+	J -> F
+	J2 -> G
+	F -> H
+	G -> H
+	subgraph cluster_D {
+		label=D
+		Table1
+		Table2
+		Table3
+		Table4
+	}
+	subgraph cluster_E {
+		label=E
+		Table3
+		Table4
+	}
+	subgraph cluster_B {
+		label=B
+		F
+		G
+	}
+}
