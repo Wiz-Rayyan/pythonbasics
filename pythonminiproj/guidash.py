@@ -6,12 +6,12 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 def plot_chart():
     try:
-        chart_type = chart_type_var.get()
+        graph = graph_var.get()
         x_values = list(map(str.strip, entry_x.get().split(',')))
         y_values = list(map(float, entry_y.get().split(',')))
         
         # Handle non-numeric x values for Pie chart
-        if chart_type == "Pie Chart":
+        if graph == "Pie Chart":
             labels = x_values
             sizes = y_values
         else:
@@ -30,16 +30,16 @@ def plot_chart():
         fig = Figure(figsize=(5, 4), dpi=100)
         ax = fig.add_subplot(111)
 
-        if chart_type == "Line Chart":
+        if graph == "Line Chart":
             ax.plot(x_values, y_values, color=color)
-        elif chart_type == "Bar Chart":
+        elif graph == "Bar Chart":
             ax.bar(x_values, y_values, color=color)
-        elif chart_type == "Pie Chart":
+        elif graph == "Pie Chart":
             ax.pie(sizes, labels=labels, colors=[color]*len(labels), autopct='%1.1f%%')
-        elif chart_type == "Scatter Plot":
+        elif graph == "Scatter Plot":
             ax.scatter(x_values, y_values, color=color)
 
-        if chart_type != "Pie Chart":
+        if graph != "Pie Chart":
             ax.set_xlabel(xlabel)
             ax.set_ylabel(ylabel)
         ax.set_title(title)
@@ -58,9 +58,9 @@ root.geometry("600x750")
 
 # Chart Type
 tk.Label(root, text="Select Chart Type:", font=("Arial", 12)).pack(pady=5)
-chart_types = ["Line Chart", "Bar Chart", "Pie Chart", "Scatter Plot"]
-chart_type_var = tk.StringVar()
-chart_dropdown = ttk.Combobox(root, textvariable=chart_type_var, values=chart_types, state="readonly")
+graphs = ["Line Chart", "Bar Chart", "Pie Chart", "Scatter Plot"]
+graph_var = tk.StringVar()
+chart_dropdown = ttk.Combobox(root, textvariable=graph_var, values=graphs, state="readonly")
 chart_dropdown.pack()
 chart_dropdown.current(0)
 

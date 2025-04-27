@@ -103,10 +103,11 @@ class GraphApp:
             tk.Label(self.root, text=label, bg="#2e3f4f", fg="white").pack()
             tk.Entry(self.root, textvariable=var, width=40).pack()
 
-        ttk.Button(self.root, text="Generate Graph", command=self.generate_plot).pack(pady=5)
-        ttk.Button(self.root, text="Upload CSV and Plot", command=self.fupload_csv).pack(pady=5)
-        ttk.Button(self.root, text="Upload CSV", command=self.upload_csv).pack(pady=5)
-        ttk.Button(self.root, text="Plot CSV", command=self.plot_csv_data).pack(pady=5)
+        ttk.Button(self.root, text="Generate Graph", command=self.generate_plot).pack()
+        ttk.Button(self.root, text="Upload CSV and Plot", command=self.fupload_csv).pack()
+        ttk.Button(self.root, text="Upload CSV", command=self.upload_csv).pack()
+        ttk.Button(self.root, text="Plot CSV", command=self.plot_csv_data).pack()
+
 
 
         ttk.Button(self.root, text="Save & Upload", command=self.save_and_upload).pack(pady=5)

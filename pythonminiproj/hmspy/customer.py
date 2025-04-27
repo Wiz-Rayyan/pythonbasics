@@ -192,7 +192,7 @@ class Cust_Win:
         messagebox.showerror("error", "all fields are required", parent=self.root)
     else:
      try: 
-        conn=mysql.connector.connect(host="localhost", username="root", password="0nbh6mysql", database="hotel1")
+        conn=mysql.connector.connect(host="localhost", username="root", password="writeurownpasswrd", database="hotel1")
         my_cursor=conn.cursor()
         my_cursor.execute("INSERT INTO customer (Ref, Name, Address, Gender, PostCode, Mobile, Email, Nationality, Idproof, Idnumber, Altaddress) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",(
                                       self.var_ref.get(),   
@@ -226,7 +226,7 @@ class Cust_Win:
         messagebox.showerror("Error", "Please enter mobile number to update")
     else:
         try:
-            conn = mysql.connector.connect(host="localhost", username="root", password="0nbh6mysql", database="hotel1")
+            conn = mysql.connector.connect(host="localhost", username="root", password="writeurownpasswrd", database="hotel1")
             my_cursor = conn.cursor()
             my_cursor.execute("""
                 UPDATE customer SET 
@@ -258,7 +258,7 @@ class Cust_Win:
       confirm = messagebox.askyesno("Hotel Management System", "Do you want to delete this customer?")
       if confirm:
           try:
-              conn = mysql.connector.connect(host="localhost", username="root", password="0nbh6mysql", database="hotel1")
+              conn = mysql.connector.connect(host="localhost", username="root", password="writeurownpasswrd", database="hotel1")
               my_cursor = conn.cursor()
               query = "DELETE FROM customer WHERE Ref=%s"
               value = (self.var_ref.get(),)
@@ -273,7 +273,7 @@ class Cust_Win:
               messagebox.showerror("Error", f"Error due to: {str(es)}")
 
   def fetch_data(self):
-    conn = mysql.connector.connect(host="localhost", username="root", password="0nbh6mysql", database="hotel1")
+    conn = mysql.connector.connect(host="localhost", username="root", password="writeurownpasswrd", database="hotel1")
     my_cursor = conn.cursor()
     my_cursor.execute("SELECT * FROM customer")
     rows = my_cursor.fetchall()
